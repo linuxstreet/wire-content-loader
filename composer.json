@@ -1,0 +1,57 @@
+{
+    "name": "linuxstreet/wire-content-loader",
+    "description": "Flexible way of loading Livewire component or Blade view anywhere on the page or inside a modal.",
+    "keywords": [
+        "php",
+        "laravel",
+        "livewire",
+        "content",
+        "modal",
+        "alpinejs"
+    ],
+    "require": {
+        "php": "^8.3",
+        "livewire/livewire": "^3.5"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.6",
+        "pestphp/pest": "^3.6",
+        "pestphp/pest-plugin-laravel": "^3.0",
+        "pestphp/pest-plugin-livewire": "^3.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Linuxstreet\\WireContentLoader\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Igor Jovanovic",
+            "email": "linuxstreet@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Linuxstreet\\WireContentLoader\\WireContentLoaderServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
