@@ -22,19 +22,23 @@ Seamlessly integrate dynamic content into any part of your web page.
 By specifying a unique ID for each loader, you can ensure accurate and independent loading of content within multiple containers.
 This feature is particularly valuable for Single-Page Applications (SPAs) or when you need to dynamically load components for a more interactive user experience.
 
+Place content loader with default ID
 ```bladehtml
-- Place content loader with default ID
 <livewire:content-loader/>
-
-- Set ID to 'menu'
+```
+Set content loader ID to 'menu'
+```bladehtml
 <livewire:content-loader id="menu"/>
-
-- Set ID to 'sidebar' and initially load Blade view into it.
+```
+Set ID to 'sidebar' and initially load Blade view into it.
+```bladehtml
 <livewire:content-loader id="sidebar" view="my-blade-view"/>
-
-- Set ID to 'footer' and initially load Livewire component into it.
+```
+Set ID to 'footer' and initially load Livewire component into it.
+```bladehtml
 <livewire:content-loader id="footer" component="my-livewire-component"/>
 ```
+
 Content loader is listening for 'content-load' browser event. 
 
 AlpineJS @click example:
