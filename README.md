@@ -70,7 +70,7 @@ Provide either 'component' or 'view' options like this:
 { view: 'blade_view' }
 ```
 
-Sere are some examples with optional params:
+Here are some examples with optional params:
 
 ```html
 { component: 'my-component', forceReload: true }
