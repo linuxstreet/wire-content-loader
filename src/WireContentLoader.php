@@ -2,6 +2,7 @@
 
 namespace Linuxstreet\WireContentLoader;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Blade;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -37,11 +38,15 @@ class WireContentLoader extends Component
         return implode('-', $parts);
     }
 
-    public function mount($id = null): void
+    public function mount(string $id = null, bool $forceReload = false): void
     {
         $this->id = $id ?? self::ID;
+        $this->forceReload = $forceReload;
     }
 
+    /**
+     * @throws \Throwable
+     */
     #[On('content-load')]
     public function prepare($options): void
     {
@@ -49,7 +54,7 @@ class WireContentLoader extends Component
         $view = $options['view'] ?? '';
         throw_if((blank($component) && blank($view)), new \Exception('Component or View name must be provided.'));
 
-        $target = $options['target'] ?? 'main';
+        $target = $options['target'] ?? self::ID;
 
         if ($target !== $this->id) {
             $this->skipRender();
@@ -60,8 +65,8 @@ class WireContentLoader extends Component
 
         $this->component = $component;
         $this->view = $view;
-        $this->params = $options['params'] ?? [];
-        $this->forceReload = $options['forceReload'] ?? false;
+        $this->params = (array)($options['params'] ?? []);
+        $this->forceReload ??= (bool)$options['forceReload'];
     }
 
     public function readyToRender(): bool
@@ -69,7 +74,7 @@ class WireContentLoader extends Component
         return (!blank($this->component . $this->view));
     }
 
-    public function render()
+    public function render(): View
     {
         if ($this->readyToRender()) {
             try {
